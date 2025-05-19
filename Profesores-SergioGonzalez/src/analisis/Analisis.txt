@@ -1,0 +1,43 @@
+Clase Profesor
+
+	- int idProfesor
+	- String nombre
+	- String apellidos
+	- String especialidad
+	- String email
+	
+	+ constructor Profesor(idProfesor)
+	+ constructor Profesor(nombre, apellidos, especialidad, email)
+	
+	+ int getIdProfesor()
+	+ String getNombre()
+	+ String getApellidos()
+	+ String getEspecialidad()
+	+ String getEmail()
+	
+	+ boolean equals(Objeto obj)
+	+ String toString()
+	
+
+Clase ProfesorDAO
+
+	- Connection conexion;
+	
+	+ constructor ProfesorDAO()
+	
+	+ Connection getConexion()
+	
+	+ boolean InsertarProfesor(Profesor prof)		
+	+ String listadoProfesores()
+	+ Profesor buscarProfesor(Profesor prof)
+	+ boolean modificarEspecialidad(String especialidad)
+	+ boolean modificarEmail(String email)
+	+ boolean elimarProfesor(Profesor prof)
+	
+Clase Constantes
+	
+	- Final Static String URL
+	- Final Static String USUARIO
+	- Final Static String CONSTRASEÑA
+				
+	
