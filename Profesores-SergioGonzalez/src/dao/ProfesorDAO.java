@@ -132,70 +132,100 @@ public class ProfesorDAO {
 		return profEnc;
 	}
 
-	
 	/**
 	 * Modifica la especialidad de un profesor
-	 * @param nueva especialidad 
-	 * @param id del profesor
+	 * 
+	 * @param nueva especialidad
+	 * @param id    del profesor
 	 * @return true si modifica algo o false si no
 	 */
 	public boolean modificarEspecialidad(String nEsp, int id) {
-		boolean exito=false;
-		
-		//hacemos update restando 4 a la nota
+		boolean exito = false;
+
+		// hacemos update restando 4 a la nota
 		String update = "UPDATE Profesores SET especialidad=? WHERE id_profesor=?";
 
 		// objeto PreparedStatment y le pasamos el update
 		PreparedStatement pst;
 		try {
 			pst = conexion.prepareStatement(update);
-		
-		// aplicamos donde el tipo de la evaluación sea Examen
-		pst.setString(1, nEsp);
-		pst.setInt(1, id);
-		// guardamos cuantas filas se han modificado
-		int rs = pst.executeUpdate();
-		
-		if(rs>0) {
-			exito=true;
-		}
+
+			// aplicamos donde el tipo de la evaluación sea Examen
+			pst.setString(1, nEsp);
+			pst.setInt(1, id);
+			// guardamos cuantas filas se han modificado
+			int rs = pst.executeUpdate();
+
+			if (rs > 0) {
+				exito = true;
+			}
 		} catch (SQLException e) {
 			System.out.println("Error con la base de datos " + e.getMessage());
 		}
-		
+
 		return exito;
 	}
-	
+
 	/**
 	 * Modifica el email de un profesor
-	 * @param nueva email 
-	 * @param id del profesor
+	 * 
+	 * @param nueva email
+	 * @param id    del profesor
 	 * @return true si modifica algo o false si no
 	 */
 	public boolean modificarEmail(String nEmail, int id) {
-		boolean exito=false;
-		
-		//hacemos update restando 4 a la nota
+		boolean exito = false;
+
+		// hacemos update restando 4 a la nota
 		String update = "UPDATE Profesores SET email=? WHERE id_profesor=?";
 
 		// objeto PreparedStatment y le pasamos el update
 		PreparedStatement pst;
 		try {
 			pst = conexion.prepareStatement(update);
-		
-		// aplicamos donde el tipo de la evaluación sea Examen
-		pst.setString(1, nEmail);
-		pst.setInt(1, id);
-		// guardamos cuantas filas se han modificado
-		int rs = pst.executeUpdate();
-		
-		if(rs>0) {
-			exito=true;
-		}
+
+			// aplicamos donde el tipo de la evaluación sea Examen
+			pst.setString(1, nEmail);
+			pst.setInt(1, id);
+			// guardamos cuantas filas se han modificado
+			int rs = pst.executeUpdate();
+
+			if (rs > 0) {
+				exito = true;
+			}
 		} catch (SQLException e) {
 			System.out.println("Error con la base de datos " + e.getMessage());
 		}
-		
+
+		return exito;
+	}
+
+	/**
+	 * Elimina un profesor de la base de datos
+	 * @param id del profesor a eliminar
+	 * @return true si lo elimina, false si no
+	 */
+	public boolean EliminarProfesor(int id) {
+		boolean exito = false;
+
+		String delete = "delete from profesores where id=?";
+		try {
+			// sentencia paremetrizada creando objeto de tipo PreparedStantement
+			PreparedStatement pst = conexion.prepareStatement(delete);
+			// le indicamos que le primer interrogante que asignamos(el 1) y que el valor
+			// que le corresponde es 2
+			pst.setInt(1, id);
+
+			// guardamos el resultado de la consulta
+			int rs = pst.executeUpdate();
+
+			if (rs > 0) {
+				exito = true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Error con la base de datos " + e.getMessage());
+		}
+
 		return exito;
 	}
 }
