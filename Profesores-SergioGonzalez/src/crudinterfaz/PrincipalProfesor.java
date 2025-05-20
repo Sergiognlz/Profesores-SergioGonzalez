@@ -32,16 +32,25 @@ public class PrincipalProfesor {
 			case 1 -> {
 				// creamos objeto profesor llamando a la función del mismo nombre
 				profesor = crearProfesor();
+
 				// insertamos el profesor en la base de datos llamando a la función del dao
 				pDAO.insertarProfesor(profesor);
 
 			}
 			case 2 -> {
+				// mostramos por consola el cojunto pasandole el conjunto creado en la función
+				// listado del DAO
 				leerConjunto(pDAO.listado());
 
 			}
-			case 3->{
-				
+			case 3 -> {
+				// buscamos al profesor a través de su id pidiendolo con la función pedirID del
+				// main y usamos la función buscarProfesor del dao. Guardamos el objeto que
+				// devuelve en un objeto profesor
+				profesor = pDAO.buscarProfesor(pedirID());
+				//mostramos profesor por consola
+				System.out.println(profesor);
+
 			}
 			}
 

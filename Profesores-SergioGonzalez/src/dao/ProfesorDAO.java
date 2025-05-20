@@ -29,7 +29,7 @@ public class ProfesorDAO {
 	public ProfesorDAO() {
 		try {
 			//conexión con la base de datos
-			conexion = DriverManager.getConnection(Constantes.URL, Constantes.CONTRASEÑA, Constantes.CONTRASEÑA);
+			conexion = DriverManager.getConnection(Constantes.URL, Constantes.USUARIO, Constantes.CONTRASEÑA);
 			//captura de excepciones
 		} catch (SQLException e) {
 			//mensaje error
