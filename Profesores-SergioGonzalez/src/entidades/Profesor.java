@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.Objects;
+
 /**
  * clase objeto profesor que representa... pues un profesor
  */
@@ -25,8 +27,6 @@ public class Profesor {
 	 */
 	private String email;
 
-
-
 	/**
 	 * Constructor completo de objeto profesor. No tiene nombre porque es
 	 * autoincrementativo
@@ -41,6 +41,38 @@ public class Profesor {
 	 *                     espacio en blanco
 	 */
 	public Profesor(String nombre, String apellido, String especialidad, String email) {
+		if (nombre != null && !nombre.isBlank()) {
+			this.nombre = nombre;
+		}
+		if (apellido != null && !apellido.isBlank()) {
+			this.apellido = apellido;
+		}
+		if (especialidad != null && !especialidad.isBlank()) {
+			this.especialidad = especialidad;
+		}
+		if (email != null && !email.isBlank()) {
+			this.email = email;
+		}
+	}
+
+	/**
+	 * Constructor completo de objeto profesor.
+	 * 
+	 * @param id           del profesor.
+	 * 
+	 * @param nombre       del profesor. No puede ser nulo, estar vacío o ser un
+	 *                     espacio en blanco
+	 * @param apellido     del profesor. No puede ser nulo, estar vacío o ser un
+	 *                     espacio en blanco
+	 * @param especialidad del profesor. No puede ser nulo, estar vacío o ser un
+	 *                     espacio en blanco
+	 * @param email        del profesor. No puede ser nulo, estar vacío o ser un
+	 *                     espacio en blanco
+	 */
+	public Profesor(int id, String nombre, String apellido, String especialidad, String email) {
+
+		this.idProfesor = id;
+
 		if (nombre != null && !nombre.isBlank()) {
 			this.nombre = nombre;
 		}
@@ -101,6 +133,14 @@ public class Profesor {
 	}
 
 	/**
+	 * sobreescritura del hascode en base al id
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(idProfesor);
+	}
+
+	/**
 	 * sobreescritura del método equals. Dos objetos profesor serán iguales cuando
 	 * tengan el mismo id.
 	 * 
@@ -132,4 +172,7 @@ public class Profesor {
 		return cadena;
 	}
 
+	
+	
+	
 }

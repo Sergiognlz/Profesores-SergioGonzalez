@@ -28,11 +28,11 @@ public class ProfesorDAO {
 	 */
 	public ProfesorDAO() {
 		try {
-			//conexión con la base de datos
+			// conexión con la base de datos
 			conexion = DriverManager.getConnection(Constantes.URL, Constantes.USUARIO, Constantes.CONTRASEÑA);
-			//captura de excepciones
+			// captura de excepciones
 		} catch (SQLException e) {
-			//mensaje error
+			// mensaje error
 			System.out.println("Error al crear la conexión con la base de datos: " + e.getMessage());
 		}
 	}
@@ -53,13 +53,13 @@ public class ProfesorDAO {
 	 * @return un booleano indicando true si tiene exito en insertar o false si no;
 	 */
 	public boolean insertarProfesor(Profesor prof) {
-		//booleana exito a false
+		// booleana exito a false
 		boolean exito = false;
-		//sentencia sql
+		// sentencia sql
 		String sql = "INSERT INTO profesores (nombre, apellido, especialidad, email)" + "VALUES (?, ?, ?, ?)";
-		//objeto para realizar la conexión
+		// objeto para realizar la conexión
 		PreparedStatement ps;
-		//try catch para capturar
+		// try catch para capturar
 		try {
 			ps = conexion.prepareStatement(sql);
 			ps.setString(1, prof.getNombre());
@@ -95,7 +95,7 @@ public class ProfesorDAO {
 
 			while (rs.next()) {
 
-				conjunto.add(new Profesor(rs.getString("nombre"), rs.getString("apellido"),
+				conjunto.add(new Profesor(rs.getInt("id_profesor"), rs.getString("nombre"), rs.getString("apellido"),
 						rs.getString("especialidad"), rs.getString("email")));
 
 			}
@@ -123,10 +123,10 @@ public class ProfesorDAO {
 			pst = conexion.prepareStatement(select);
 			pst.setInt(1, id);
 
-			rs = pst.executeQuery(select);
+			rs = pst.executeQuery();
 
 			if (rs.next()) {
-				profEnc = new Profesor(rs.getString("nombre"), rs.getString("apellido"), rs.getString("especialidad"),
+				profEnc = new Profesor( rs.getInt("id_profesor"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("especialidad"),
 						rs.getString("email"));
 			}
 
@@ -158,7 +158,7 @@ public class ProfesorDAO {
 
 			// aplicamos donde el tipo de la evaluación sea Examen
 			pst.setString(1, nEsp);
-			pst.setInt(1, id);
+			pst.setInt(2, id);
 			// guardamos cuantas filas se han modificado
 			int rs = pst.executeUpdate();
 
@@ -192,7 +192,7 @@ public class ProfesorDAO {
 
 			// aplicamos donde el tipo de la evaluación sea Examen
 			pst.setString(1, nEmail);
-			pst.setInt(1, id);
+			pst.setInt(2, id);
 			// guardamos cuantas filas se han modificado
 			int rs = pst.executeUpdate();
 
@@ -208,13 +208,14 @@ public class ProfesorDAO {
 
 	/**
 	 * Elimina un profesor de la base de datos
+	 * 
 	 * @param id del profesor a eliminar
 	 * @return true si lo elimina, false si no
 	 */
 	public boolean EliminarProfesor(int id) {
 		boolean exito = false;
 
-		String delete = "delete from profesores where id=?";
+		String delete = "delete from profesores where id_profesor=?";
 		try {
 			// sentencia paremetrizada creando objeto de tipo PreparedStantement
 			PreparedStatement pst = conexion.prepareStatement(delete);
