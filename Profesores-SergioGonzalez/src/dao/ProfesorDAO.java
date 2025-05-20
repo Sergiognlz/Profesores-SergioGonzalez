@@ -126,10 +126,76 @@ public class ProfesorDAO {
 
 		} catch (SQLException e) {
 
-			System.out.println("Error al acceder a la base de datos");
+			System.out.println("Error con la base de datos " + e.getMessage());
 		}
 
 		return profEnc;
 	}
 
+	
+	/**
+	 * Modifica la especialidad de un profesor
+	 * @param nueva especialidad 
+	 * @param id del profesor
+	 * @return true si modifica algo o false si no
+	 */
+	public boolean modificarEspecialidad(String nEsp, int id) {
+		boolean exito=false;
+		
+		//hacemos update restando 4 a la nota
+		String update = "UPDATE Profesores SET especialidad=? WHERE id_profesor=?";
+
+		// objeto PreparedStatment y le pasamos el update
+		PreparedStatement pst;
+		try {
+			pst = conexion.prepareStatement(update);
+		
+		// aplicamos donde el tipo de la evaluación sea Examen
+		pst.setString(1, nEsp);
+		pst.setInt(1, id);
+		// guardamos cuantas filas se han modificado
+		int rs = pst.executeUpdate();
+		
+		if(rs>0) {
+			exito=true;
+		}
+		} catch (SQLException e) {
+			System.out.println("Error con la base de datos " + e.getMessage());
+		}
+		
+		return exito;
+	}
+	
+	/**
+	 * Modifica el email de un profesor
+	 * @param nueva email 
+	 * @param id del profesor
+	 * @return true si modifica algo o false si no
+	 */
+	public boolean modificarEmail(String nEmail, int id) {
+		boolean exito=false;
+		
+		//hacemos update restando 4 a la nota
+		String update = "UPDATE Profesores SET email=? WHERE id_profesor=?";
+
+		// objeto PreparedStatment y le pasamos el update
+		PreparedStatement pst;
+		try {
+			pst = conexion.prepareStatement(update);
+		
+		// aplicamos donde el tipo de la evaluación sea Examen
+		pst.setString(1, nEmail);
+		pst.setInt(1, id);
+		// guardamos cuantas filas se han modificado
+		int rs = pst.executeUpdate();
+		
+		if(rs>0) {
+			exito=true;
+		}
+		} catch (SQLException e) {
+			System.out.println("Error con la base de datos " + e.getMessage());
+		}
+		
+		return exito;
+	}
 }

@@ -29,8 +29,8 @@ Clase ProfesorDAO
 	+ boolean InsertarProfesor(Profesor prof)		
 	+ ResultSet listadoProfesores()
 	+ Profesor buscarProfesor(int id)
-	+ boolean modificarEspecialidad(String especialidad)
-	+ boolean modificarEmail(String email)
+	+ boolean modificarEspecialidad(String nEsp, int id)
+	+ boolean modificarEmail(String nEmail, int id)
 	+ boolean elimarProfesor(int id)
 	
 Clase Constantes
