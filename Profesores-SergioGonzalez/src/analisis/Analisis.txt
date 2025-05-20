@@ -28,11 +28,11 @@ Clase ProfesorDAO
 	+ Connection getConexion()
 	
 	+ boolean InsertarProfesor(Profesor prof)		
-	+ String listadoProfesores()
-	+ Profesor buscarProfesor(Profesor prof)
+	+ ResultSet listadoProfesores()
+	+ Profesor buscarProfesor(int id)
 	+ boolean modificarEspecialidad(String especialidad)
 	+ boolean modificarEmail(String email)
-	+ boolean elimarProfesor(Profesor prof)
+	+ boolean elimarProfesor(int id)
 	
 Clase Constantes
 	
