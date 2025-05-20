@@ -26,10 +26,13 @@ public class ProfesorDAO {
 	 * 
 	 * @param conexion con bbdd
 	 */
-	public ProfesorDAO(Connection conexion) {
+	public ProfesorDAO() {
 		try {
+			//conexión con la base de datos
 			conexion = DriverManager.getConnection(Constantes.URL, Constantes.CONTRASEÑA, Constantes.CONTRASEÑA);
+			//captura de excepciones
 		} catch (SQLException e) {
+			//mensaje error
 			System.out.println("Error al crear la conexión con la base de datos: " + e.getMessage());
 		}
 	}
@@ -50,10 +53,13 @@ public class ProfesorDAO {
 	 * @return un booleano indicando true si tiene exito en insertar o false si no;
 	 */
 	public boolean insertarProfesor(Profesor prof) {
+		//booleana exito a false
 		boolean exito = false;
+		//sentencia sql
 		String sql = "INSERT INTO profesores (nombre, apellido, especialidad, email)" + "VALUES (?, ?, ?, ?)";
-
+		//objeto para realizar la conexión
 		PreparedStatement ps;
+		//try catch para capturar
 		try {
 			ps = conexion.prepareStatement(sql);
 			ps.setString(1, prof.getNombre());
