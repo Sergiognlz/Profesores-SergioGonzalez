@@ -6,7 +6,6 @@ Clase Profesor
 	- String especialidad
 	- String email
 	
-	+ constructor Profesor(idProfesor)
 	+ constructor Profesor(nombre, apellidos, especialidad, email)
 	
 	+ int getIdProfesor()

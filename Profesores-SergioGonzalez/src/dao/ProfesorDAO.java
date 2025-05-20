@@ -72,11 +72,12 @@ public class ProfesorDAO {
 
 	/**
 	 * realiza un select de la tabla profesores y guarda la consulta en una lista de
-	 * resultados, luego crea objetos profesor con los datos y los añade a un conjunto de profesores
+	 * resultados, luego crea objetos profesor con los datos y los añade a un
+	 * conjunto de profesores
 	 * 
 	 * @return conjunto de profesores
 	 */
-	public Set listado() {
+	public Set<Profesor> listado() {
 		Set<Profesor> conjunto = new HashSet<>();
 		String select = "select * from profesores";
 		ResultSet rs = null;
@@ -118,8 +119,10 @@ public class ProfesorDAO {
 
 			rs = pst.executeQuery(select);
 
-			profEnc = new Profesor(rs.getString("nombre"), rs.getString("apellido"), rs.getString("especialidad"),
-					rs.getString("email"));
+			if (rs.next()) {
+				profEnc = new Profesor(rs.getString("nombre"), rs.getString("apellido"), rs.getString("especialidad"),
+						rs.getString("email"));
+			}
 
 		} catch (SQLException e) {
 

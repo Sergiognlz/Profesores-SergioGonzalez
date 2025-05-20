@@ -25,16 +25,7 @@ public class Profesor {
 	 */
 	private String email;
 
-	/**
-	 * Constructor objeto Profesor solo con id.
-	 * 
-	 * @param id de profesor. No puede ser negativo.
-	 */
-	public Profesor(int idProfesor) {
-		if (idProfesor > 0) {
-			this.idProfesor = idProfesor;
-		}
-	}
+
 
 	/**
 	 * Constructor completo de objeto profesor. No tiene nombre porque es
